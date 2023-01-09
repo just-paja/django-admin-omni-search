@@ -1,0 +1,32 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": [
+    "@optimics/eslint-config"
+  ],
+  "globals": {
+    "globalThis": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/prop-types": 0
+  },
+  "overrides": [
+    {
+      "files": [
+        "jest.afterEnv.js",
+        "__jest__"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
+}

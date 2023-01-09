@@ -1,0 +1,14 @@
+#branding {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .omnisearch-combo {
+    margin-left: -1rem;
+  }
+}
+
+#header {
+  overflow: visible;
+}

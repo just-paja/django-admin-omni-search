@@ -1,0 +1,2 @@
+# `@djangomni/search`
+

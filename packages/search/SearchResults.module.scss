@@ -1,0 +1,50 @@
+@import './variables.scss';
+
+.results {
+  border-color: inherit;
+  border-radius: 0 0 $border-radius $border-radius;
+  border-style: solid;
+  border-top: none;
+  border-width: 1px;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.2s;
+
+  &.open {
+    opacity: 1;
+  }
+}
+
+.result {
+  align-items: center;
+  background-color: var(--header-bg);
+  display: flex;
+  padding: $spacing-x $spacing-x;
+  text-decoration: none;
+  transition: background-color 0.1s;
+  user-select: none;
+
+  &.selected {
+    background-color: var(--button-hover-bg);
+  }
+
+  &:hover {
+    background-color: var(--default-button-hover-bg);
+  }
+
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
+}
+
+.modelName {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-right: $spacing-x;
+}
+
+.empty {
+  background-color: var(--header-bg);
+  padding: $spacing-y $spacing-x;
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@djangomni/dev-site",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "",
+  "author": "Pavel Žák <pavel@zak.global>",
+  "homepage": "https://github.com/just-paja/django-admin-omni-search#readme",
+  "license": "MIT",
+  "main": "lib/search.js",
+  "files": [
+    "dist/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/just-paja/django-admin-omni-search.git"
+  },
+  "bugs": {
+    "url": "https://github.com/just-paja/django-admin-omni-search/issues"
+  },
+  "scripts": {
+    "dev": "poetry run ./manage.py runserver 0.0.0.0:8010"
+  },
+  "dependencies": {
+    "react-loader-spinner": "^5.3.4"
+  }
+}
