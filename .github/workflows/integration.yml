@@ -65,7 +65,9 @@ jobs:
           name: ui-dist
       - name: Build
         working-directory: ${{env.dir_backend}}
-        run: poetry build -f sdist
+        run: |
+          poetry version $(npm -j version | jq -r '.["@djangomni/pypi"]')
+          poetry build -f sdist
       - name: Store artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -88,6 +90,7 @@ jobs:
   publish_pypi:
     name: Publish PyPi package
     runs-on: ubuntu-latest
+    if: needs.setenv.outputs.env_name
     needs:
       - build_pypi
       - setenv
