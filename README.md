@@ -48,6 +48,23 @@ class SiteAdmin(OmniSearchAdminSite, AdminSite):
 If you do not have a custom `base_site.html`, it should already work. In case you have done some customizations to your base site file, you will need to add one script to all pages in admin. This can be only done by
 extending the base template.
 
+```
+{% block extrahead %}
+{% if omni_search %}
+  <link 
+    href="{% static 'djangomni-search/main.css' %}"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <script
+    data-config="{{omni_search}}"
+    id="djangomni-search"
+    src="{% static 'djangomni-search/main.js' %}"
+  ></script>
+{% endif %}
+{% endblock %}
+```
+
 ### 5. Configure autocomplete
 
 The Omni Search looks for data using the [`autocomplete_fields`](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin.autocomplete_fields) attribute of `ModelAdmin`. Configure it for all the models, that you want to search.

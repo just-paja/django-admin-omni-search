@@ -45,6 +45,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "dev-ui": "lerna run --no-prefix --stream dev --scope @djangomni/search",
-    "dev-site": "lerna run --no-prefix --stream dev --scope @djangomni/dev-site"
+    "dev-site": "lerna run --no-prefix --stream dev --scope @djangomni/dev-site",
+    "test": "jest"
   }
 }

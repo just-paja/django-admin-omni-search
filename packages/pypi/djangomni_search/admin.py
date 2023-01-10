@@ -1,8 +1,6 @@
 import json
 from functools import update_wrapper
 
-from django.utils.translation import gettext_lazy as _
-from django.contrib.admin.sites import AdminSite
 from django.urls import reverse
 
 from .views import OmniSearchModelView
@@ -30,7 +28,7 @@ class OmniSearchAdminSite:
                 items.append(self.get_omnisearch_model(app, model))
         if len(items) == 0:
             return None
-        return { 
+        return {
             'models': items,
             'placeholder': str(ctx['site_header']),
             'searchUrl': reverse("admin:omnisearch"),
@@ -42,11 +40,11 @@ class OmniSearchAdminSite:
     def each_context(self, request):
         ctx = super().each_context(request)
         ctx['omni_search'] = json.dumps(self.get_omnisearch_context(ctx))
-        print(ctx, flush=True)
         return ctx
 
     def get_urls(self):
         from django.urls import path
+
         def wrap(view, cacheable=False):
             def wrapper(*args, **kwargs):
                 return self.admin_view(view, cacheable)(*args, **kwargs)

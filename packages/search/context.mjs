@@ -18,7 +18,7 @@ export const AdminProvider = ({
   const linkTo = (appLabel, modelName, pk) => {
     const model = findModel(appLabel, modelName)
     if (model) {
-      return `${model.adminUrl}${pk}/change`
+      return `${model.adminUrl}${pk}/change/`
     }
     return null
   }

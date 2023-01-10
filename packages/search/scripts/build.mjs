@@ -15,6 +15,5 @@ const staticDir = resolve(
   'djangomni-search'
 )
 
-build()
-
+await build()
 await cp(getTargetDir(), staticDir, { recursive: true })
