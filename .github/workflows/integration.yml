@@ -71,3 +71,45 @@ jobs:
         with:
           name: pypi-dist
           path: packages/pypi/dist/
+
+  setenv:
+    name: Set the environment
+    runs-on: ubuntu-latest
+    outputs:
+      env_name: ${{ steps.branch_check.outputs.env_name }}
+    steps:
+      - name: Determine destination environment
+        id: branch_check
+        run: |
+          if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+            echo "env_name=release" >> $GITHUB_OUTPUT
+          fi
+
+  publish_pypi:
+    name: Publish PyPi package
+    runs-on: ubuntu-latest
+    needs:
+      - build_pypi
+      - setenv
+    env:
+      dir_backend: ./packages/pypi
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        working-directory: ${{env.dir_backend}}
+        run: pip install twine
+      - name: Configure twine
+        run: echo -e "[pypi]\nusername = __token__\npassword = ${{secrets.PYPI_TOKEN}}" > ~/.pypirc
+      - uses: actions/download-artifact@v3
+        with:
+          name: pypi-dist
+          path: packages/pypi/dist
+      - name: Check packages
+        working-directory: ${{env.dir_backend}}
+        run: twine check dist/*
+      - name: Publish packages
+        working-directory: ${{env.dir_backend}}
+        run: twine upload dist/*
