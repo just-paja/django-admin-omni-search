@@ -110,7 +110,7 @@ export const createDevServer = webpackEnv => {
   const compilerConfig = {
     ...webpackConfig,
     externals: Object.fromEntries(
-      Object.entries(webpackConfig.externals).filter(
+      Object.entries(webpackConfig.externals || {}).filter(
         ([libName]) => !externalLibs.includes(libName)
       )
     ),
