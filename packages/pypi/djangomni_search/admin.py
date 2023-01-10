@@ -8,6 +8,7 @@ from .views import OmniSearchModelView
 
 class OmniSearchAdminSite:
     def get_omnisearch_model(self, app, model):
+        cls = model['model']
         return {
             'app': {
                 'name': str(app['name']),
@@ -16,9 +17,9 @@ class OmniSearchAdminSite:
             },
             'addUrl': str(model['add_url']),
             'adminUrl': str(model['admin_url']),
-            'ident': str(model['model']._meta.model_name),
-            'name': str(model['name']),
-            'objectName': str(model['object_name']),
+            'ident': str(cls._meta.model_name),
+            'name': str(cls._meta.verbose_name_plural),
+            'objectName': str(cls._meta.verbose_name),
         }
 
     def get_omnisearch_context(self, ctx):
