@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'djangomni_search',
     'dev_site',
+    'djangomni_search',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
