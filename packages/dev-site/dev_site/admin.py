@@ -1,7 +1,7 @@
 from django.contrib.admin.sites import AdminSite
 from django.contrib.auth import admin as auth_admin
 
-from django_omni_search.admin import OmniSearchAdminSite
+from djangomni_search.admin import OmniSearchAdminSite
 
 
 class SiteAdmin(OmniSearchAdminSite, AdminSite):

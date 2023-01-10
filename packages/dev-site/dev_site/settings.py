@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django_omni_search',
+    'djangomni_search',
     'dev_site',
     'django.contrib.admin',
     'django.contrib.auth',

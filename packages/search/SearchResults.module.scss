@@ -1,40 +1,44 @@
 @import './variables.scss';
 
 .results {
-  border-color: inherit;
+  border-color: var(--header-branding-color);
   border-radius: 0 0 $border-radius $border-radius;
   border-style: solid;
   border-top: none;
   border-width: 1px;
+  max-height: 320px;
   opacity: 0;
   overflow: hidden;
+  overflow-y: auto;
+  pointer-events: none;
   transition: opacity 0.2s;
 
   &.open {
     opacity: 1;
-  }
-}
-
-.result {
-  align-items: center;
-  background-color: var(--header-bg);
-  display: flex;
-  padding: $spacing-x $spacing-x;
-  text-decoration: none;
-  transition: background-color 0.1s;
-  user-select: none;
-
-  &.selected {
-    background-color: var(--button-hover-bg);
+    pointer-events: all;
   }
 
-  &:hover {
-    background-color: var(--default-button-hover-bg);
-  }
+  a.result {
+    align-items: center;
+    background-color: var(--header-bg);
+    display: flex;
+    padding: $spacing-x $spacing-x;
+    text-decoration: none;
+    transition: background-color 0.1s;
+    user-select: none;
 
-  &:focus-visible {
-    border: none;
-    outline: none;
+    &.selected {
+      background-color: var(--button-hover-bg);
+    }
+
+    &:hover {
+      background-color: var(--default-button-hover-bg);
+    }
+
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
   }
 }
 

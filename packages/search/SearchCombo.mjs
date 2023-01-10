@@ -6,13 +6,21 @@ import { SearchResults } from './SearchResults.mjs'
 
 import styles from './SearchCombo.module.scss'
 
-export function SearchCombo({ loading, open, onSearch, onClose, results }) {
+export function SearchCombo({
+  loading,
+  open,
+  onSearch,
+  onClose,
+  onOpen,
+  results,
+}) {
   const [selectedIndex, selectIndex] = useState(null)
   const inputSelection = -1
 
   const handleKeyDown = e => {
     const max = results.length - 1
     if (e.code === 'ArrowUp') {
+      e.preventDefault()
       if (selectedIndex === null || selectedIndex === inputSelection) {
         selectIndex(max)
       } else if (selectedIndex === 0) {
@@ -21,6 +29,7 @@ export function SearchCombo({ loading, open, onSearch, onClose, results }) {
         selectIndex(selectedIndex - 1)
       }
     } else if (e.code === 'ArrowDown') {
+      e.preventDefault()
       if (selectedIndex === inputSelection && results.length > 0) {
         selectIndex(0)
       } else if (selectedIndex >= max) {
@@ -37,6 +46,12 @@ export function SearchCombo({ loading, open, onSearch, onClose, results }) {
 
   const handleBarBlur = () => {
     selectIndex(null)
+  }
+
+  const handleClosedClick = () => {
+    if (!open && results.length) {
+      onOpen()
+    }
   }
 
   useEffect(() => {
@@ -56,6 +71,7 @@ export function SearchCombo({ loading, open, onSearch, onClose, results }) {
 
   return (
     <div
+      onClick={handleClosedClick}
       onKeyDown={handleKeyDown}
       className={classnames(
         styles.combo,

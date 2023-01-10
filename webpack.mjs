@@ -2,6 +2,8 @@
 import babelConfig from './babel.config.js'
 import dotenv from 'dotenv'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import TerserPlugin from 'terser-webpack-plugin'
 import WebpackDevServer from 'webpack-dev-server'
 import webpack from 'webpack'
 
@@ -28,26 +30,23 @@ export const getDistDir = () => resolve(BASE_DIR, 'dist')
 
 export const getWebpackConfig = ({ distDir, bundleName, entryPath, env }) => ({
   entry: entryPath,
-  externals: {
-    'cross-fetch': 'fetch',
-    react: 'React',
-    'react-dom': 'ReactDOM',
-  },
   mode: getMode(env),
   module: {
     rules: [
       getBabelConfig(),
       {
         test: /s[ac]ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          env.NODE_ENV === 'production'
+            ? MiniCssExtractPlugin.loader
+            : 'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
       {
-        test: /\.(png|jpe?g|gif|webm)$/i,
-        use: [
-          {
-            loader: 'file-loader',
-          },
-        ],
+        test: /\.(png|jpe?g|gif|svg|webm)$/i,
+        type: 'asset/resource',
       },
     ],
   },
@@ -55,20 +54,28 @@ export const getWebpackConfig = ({ distDir, bundleName, entryPath, env }) => ({
     path: distDir,
     filename: bundleName && `${bundleName}.js`,
   },
-  plugins: [new webpack.EnvironmentPlugin(env)],
+  plugins: [new webpack.EnvironmentPlugin(env), new MiniCssExtractPlugin()],
   target: 'web',
 })
 
 export const transpileScript = async ({ env, ...props }) => {
-  const compiler = webpack(
-    getWebpackConfig({
-      ...props,
-      env: {
-        ...env,
-        NODE_ENV: 'production',
-      },
-    })
-  )
+  const config = getWebpackConfig({
+    ...props,
+    devtool: 'source-map',
+    env: {
+      ...env,
+      NODE_ENV: 'production',
+    },
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new TerserPlugin({
+          test: /\.m?js(\?.*)?$/i,
+        }),
+      ],
+    },
+  })
+  const compiler = webpack(config)
   return await new Promise((resolvePromise, reject) => {
     compiler.run((err, stats) => {
       if (err) {

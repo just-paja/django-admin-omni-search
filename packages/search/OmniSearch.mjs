@@ -39,6 +39,7 @@ function OmniSearch() {
       loading={loading}
       open={open}
       onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
       onSearch={handleSearch}
       results={results}
     />

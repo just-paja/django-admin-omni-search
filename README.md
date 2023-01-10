@@ -14,16 +14,16 @@ Basically, install the dependency. You can use `poetry`, or any other package
 manager.
 
 ```shell
-pip install django-omni-search
+pip install djangomni-search
 ```
 
-### 2. Put `django_omni_search` into `INSTALLED_APPS`
+### 2. Put `djangomni_search` into `INSTALLED_APPS`
 
 It is important to put it on the top.
 
 ```python
 INSTALLED_APPS = [
-    'django_omni_search',
+    'djangomni_search',
     'django.contrib.admin',
     'django.contrib.auth',
     '...',
@@ -33,7 +33,7 @@ INSTALLED_APPS = [
 ### 3. Configure Admin Site
 
 Now you will need to configure your Admin Site(s) to inherit from
-`django_omni_search.admin.OmniSearchAdminSite`. If you're using the default
+`djangomni_search.admin.OmniSearchAdminSite`. If you're using the default
 [AdminSite](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/), you must
 [create a custom
 one](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/#overriding-default-admin-site).
