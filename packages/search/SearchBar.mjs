@@ -91,7 +91,7 @@ export function SearchBar({
   onSelect,
   onSubmit,
   selected,
-  throttleTime = 150,
+  throttleTime = 200,
 }) {
   const [q, setQ] = useState('')
   const [typing, setTyping] = useState(false)
