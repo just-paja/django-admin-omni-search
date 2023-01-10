@@ -1,11 +1,9 @@
 @import './variables.scss';
 
 .results {
-  border-color: var(--header-branding-color);
   border-radius: 0 0 $border-radius $border-radius;
-  border-style: solid;
-  border-top: none;
-  border-width: 1px;
+  border: none;
+  padding: 0 1px 1px;
   max-height: 320px;
   opacity: 0;
   overflow: hidden;
@@ -13,15 +11,33 @@
   pointer-events: none;
   transition: opacity 0.2s;
 
+  &:before {
+    background-color: var(--header-branding-color);
+    bottom: 0;
+    content: ' ';
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
   &.open {
     opacity: 1;
     pointer-events: all;
   }
 
-  a.result {
-    align-items: center;
+  .result,
+  .empty {
     background-color: var(--header-bg);
+    position: relative;
+    z-index: 10;
+  }
+
+  a.result {
+    align-items: flex-start;
     display: flex;
+    margin-top: 1px;
     padding: $spacing-x $spacing-x;
     text-decoration: none;
     transition: background-color 0.1s;
@@ -31,6 +47,10 @@
       background-color: var(--button-hover-bg);
     }
 
+    &:last-child {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+
     &:hover {
       background-color: var(--default-button-hover-bg);
     }
@@ -38,6 +58,10 @@
     &:focus-visible {
       border: none;
       outline: none;
+    }
+
+    &:first-child {
+      margin-top: 0;
     }
   }
 }

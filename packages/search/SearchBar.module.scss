@@ -4,12 +4,33 @@
   align-items: center;
   background: var(--header-bg);
   border-radius: $border-radius;
-  border-width: 1px;
-  border-style: solid;
-  border-color: var(--header-bg);
   cursor: text;
   display: flex;
   transition: border-color 0.2s;
+  padding: 1px;
+  overflow: hidden;
+
+  &:before,
+  &:after {
+    border-radius: $border-radius;
+    bottom: 0;
+    content: ' ';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: all 0.2s;
+    z-index: 1;
+  }
+
+  &:before {
+    opacity: 0.5;
+  }
+
+  &:after {
+    background-color: var(--header-bg);
+    margin: 1px;
+  }
 
   input {
     background: none;
@@ -25,13 +46,21 @@
     transition: outline-color 0.2s;
   }
 
-  &:focus-within,
-  &.open {
-    outline-color: inherit;
-    border-color: var(--header-branding-color);
+  input,
+  .status,
+  .fieldIcon {
+    position: relative;
+    z-index: 2;
   }
 
-  &.open {
+  &:focus-within:before,
+  &.open:before {
+    background-color: var(--header-branding-color);
+  }
+
+  &.open,
+  &.open:after,
+  &.open:before {
     border-radius: $border-radius $border-radius 0 0;
   }
 }

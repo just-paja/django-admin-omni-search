@@ -12,10 +12,11 @@
     background: rgba(0,0,0,0.5);
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.33s;
   }
 
   &.open {
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    box-shadow: 0 0 12px rgba(0,0,0,0.5);
 
     .blur {
       backdrop-filter: blur(4px);
@@ -27,7 +28,7 @@
 
 .bar {
   position: relative;
-  z-index: 9999;
+  z-index: 10001;
 }
 
 .popup {
@@ -35,4 +36,5 @@
   z-index: 10000;
   width: 100%;
   box-sizing: border-box;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
 }
