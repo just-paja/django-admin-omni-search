@@ -38,20 +38,22 @@ const Template = args => {
   }, [argResult])
 
   return (
-    <AdminProvider models={[]} searchPath="/admin">
-      <SearchBar
-        disabled={args.disabled}
-        open={args.open}
-        onSubmit={() => {}}
-      />
-      <SearchResults
-        {...args}
-        open={args.open}
-        results={results}
-        onSelect={setValue}
-      />
-      <pre>{JSON.stringify(value, null, JSON_PADDING)}</pre>
-    </AdminProvider>
+    <header>
+      <AdminProvider models={[]} searchPath="/admin">
+        <SearchBar
+          disabled={args.disabled}
+          open={args.open}
+          onSubmit={() => {}}
+        />
+        <SearchResults
+          {...args}
+          open={args.open}
+          results={results}
+          onSelect={setValue}
+        />
+        <pre>{JSON.stringify(value, null, JSON_PADDING)}</pre>
+      </AdminProvider>
+    </header>
   )
 }
 
@@ -59,14 +61,14 @@ const defaultResults = JSON.stringify(
   [
     {
       appName: 'auth',
-      modelName: 'user',
+      modelVerbose: 'user',
       key: 'auth.user.1',
       pk: 1,
       text: 'Hans Olo',
     },
     {
       appName: 'auth',
-      modelName: 'user',
+      modelVerbose: 'user',
       key: 'auth.user.2',
       pk: 2,
       text: 'Dar Thvader',

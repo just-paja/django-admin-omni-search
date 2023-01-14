@@ -24,10 +24,12 @@ const JSON_PADDING = 2
 const Template = args => {
   const [value, setValue] = useState()
   return (
-    <AdminProvider model={[]} searchPath="/" placeholder={args.placeholder}>
-      <SearchBar {...args} onSubmit={setValue} />
-      <pre>{JSON.stringify(value, null, JSON_PADDING)}</pre>
-    </AdminProvider>
+    <header>
+      <AdminProvider model={[]} searchPath="/" placeholder={args.placeholder}>
+        <SearchBar {...args} onSubmit={setValue} />
+        <pre>{JSON.stringify(value, null, JSON_PADDING)}</pre>
+      </AdminProvider>
+    </header>
   )
 }
 

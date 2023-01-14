@@ -1,6 +1,14 @@
 :root {
+  // These are copy & pasted default Django Admin colors
+  --button-hover-bg: #609ab6;
+  --default-button-hover-bg: #205067;
   --header-bg: #417690;
   --header-branding-color: #f5dd5d;
   --header-color: #ffc;
   --header-link-color: #fff;
+}
+
+header {
+  background-color: var(--header-bg);
+  padding: 1rem 4rem;
 }

@@ -36,18 +36,24 @@ const Template = args => {
     }
   }, [argResult])
 
+  useEffect(() => {
+    setOpen(args.open)
+  }, [args.open])
+
   return (
-    <AdminProvider models={[]} searchPath="/admin">
-      <div onClick={() => setOpen(true)}>
-        <SearchCombo
-          open={open}
-          onClose={() => setOpen(false)}
-          results={results}
-          onSubmit={setValue}
-        />
-        <pre>{JSON.stringify(value, null, JSON_PADDING)}</pre>
-      </div>
-    </AdminProvider>
+    <header>
+      <AdminProvider models={[]} searchPath="/admin">
+        <div onClick={() => setOpen(true)}>
+          <SearchCombo
+            open={open}
+            onClose={() => setOpen(false)}
+            results={results}
+            onSubmit={setValue}
+          />
+          <pre>{JSON.stringify(value, null, JSON_PADDING)}</pre>
+        </div>
+      </AdminProvider>
+    </header>
   )
 }
 
@@ -55,14 +61,14 @@ const defaultResults = JSON.stringify(
   [
     {
       appName: 'auth',
-      modelName: 'user',
+      modelVerbose: 'user',
       key: 'auth.user.1',
       pk: 1,
       text: 'Hans Olo',
     },
     {
       appName: 'auth',
-      modelName: 'user',
+      modelVerbose: 'user',
       key: 'auth.user.2',
       pk: 2,
       text: 'Dar Thvader',
