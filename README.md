@@ -3,6 +3,8 @@
 > Django Admin Site extension, that allows searching all entities from single
 > field
 
+![./docs/django-preview.gif](./docs/django-preview.gif)
+
 ## Installation and usage
 
 Go to the [pypi package README.md](./packages/pypi/README.md)
