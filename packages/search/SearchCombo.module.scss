@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 .combo {
   position: relative;
   z-index: 100000;
@@ -16,7 +18,9 @@
   }
 
   &.open {
-    box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    .search {
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
 
     .blur {
       backdrop-filter: blur(4px);
@@ -24,6 +28,14 @@
       pointer-events: all;
     }
   }
+}
+
+.line {
+  display: flex;
+}
+
+.search {
+  position: relative;
 }
 
 .bar {
@@ -37,4 +49,10 @@
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 0 12px rgba(0,0,0,0.5);
+}
+
+.buttons {
+  display: flex;
+  position: relative;
+  z-index: 9500;
 }

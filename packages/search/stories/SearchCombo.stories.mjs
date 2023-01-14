@@ -43,9 +43,10 @@ const Template = args => {
   return (
     <header>
       <AdminProvider models={[]} searchPath="/admin">
-        <div onClick={() => setOpen(true)}>
+        <div>
           <SearchCombo
             open={open}
+            onOpen={() => setOpen(true)}
             onClose={() => setOpen(false)}
             results={results}
             onSubmit={setValue}

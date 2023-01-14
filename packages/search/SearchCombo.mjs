@@ -1,12 +1,14 @@
 import classnames from 'classnames'
 import React, { useEffect, useState } from 'react'
 
+import { HomeButton } from './HomeButton.mjs'
 import { SearchBar } from './SearchBar.mjs'
 import { SearchResults } from './SearchResults.mjs'
 
 import styles from './SearchCombo.module.scss'
 
 export function SearchCombo({
+  homePath,
   loading,
   open,
   onSearch,
@@ -80,21 +82,28 @@ export function SearchCombo({
       )}
     >
       <div className={styles.blur} onClick={onClose} />
-      <SearchBar
-        className={styles.bar}
-        loading={loading}
-        open={open}
-        onBlur={selectedIndex === inputSelection ? handleBarBlur : null}
-        onSelect={handleBarSelect}
-        onSubmit={onSearch}
-        selected={selectedIndex === inputSelection}
-      />
-      <SearchResults
-        className={styles.popup}
-        open={open}
-        results={results}
-        selectedIndex={selectedIndex}
-      />
+      <div className={styles.line}>
+        <div className={styles.buttons}>
+          <HomeButton href={homePath} />
+        </div>
+        <div className={styles.search}>
+          <SearchBar
+            className={styles.bar}
+            loading={loading}
+            open={open}
+            onBlur={selectedIndex === inputSelection ? handleBarBlur : null}
+            onSelect={handleBarSelect}
+            onSubmit={onSearch}
+            selected={selectedIndex === inputSelection}
+          />
+          <SearchResults
+            className={styles.popup}
+            open={open}
+            results={results}
+            selectedIndex={selectedIndex}
+          />
+        </div>
+      </div>
     </div>
   )
 }

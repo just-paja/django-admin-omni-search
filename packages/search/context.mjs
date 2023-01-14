@@ -7,6 +7,7 @@ const AdminContext = createContext()
 export const useAdmin = () => useContext(AdminContext)
 
 export const AdminProvider = ({
+  homePath,
   models,
   placeholder,
   searchPath,
@@ -64,6 +65,7 @@ export const AdminProvider = ({
     return Promise.allSettled(promises)
   }
   const ctx = {
+    homePath,
     linkTo,
     fetchResults,
     models,

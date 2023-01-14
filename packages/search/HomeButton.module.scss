@@ -1,0 +1,14 @@
+@import './variables.scss';
+
+.button {
+  align-items: center;
+  display: flex;
+  padding: $spacing-y $spacing-x;
+}
+
+.icon {
+  color: var(--header-branding-color);
+  height: $icon-size;
+  width: $icon-size;
+}
+

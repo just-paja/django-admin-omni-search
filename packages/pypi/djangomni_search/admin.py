@@ -35,6 +35,7 @@ class OmniSearchAdminSite:
         if len(items) == 0:
             return None
         return {
+            'homeUrl': str(ctx['site_url']),
             'models': items,
             'placeholder': str(ctx['site_header']),
             'searchUrl': reverse("admin:omnisearch"),
