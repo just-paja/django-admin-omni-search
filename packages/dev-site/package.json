@@ -8,7 +8,7 @@
   "homepage": "https://github.com/just-paja/django-admin-omni-search#readme",
   "license": "MIT",
   "scripts": {
-    "dev": "poetry run ./manage.py runserver 0.0.0.0:8010"
+    "dev": "poetry install && poetry run ./manage.py migrate && poetry run ./manage.py runserver 0.0.0.0:8010"
   },
   "dependencies": {
     "react-loader-spinner": "^5.3.4"

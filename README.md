@@ -29,9 +29,14 @@ There is a [dev-site](./packages/dev-site) prepared and configured, which canbe
 used to develop against real environment. You will need poetry to install deps.
 
 ```
-cd packages/dev-site
-poetry install
-poetry ./manage.py migrate
-poetry ./manage.py createsuperuser
-poetry ./manage.py runserver
+npm run dev-site
 ```
+
+And there is the [search](./packages/search) package, which contains the React
+UI project. You will need to run this in a separate terminal.
+
+```
+npm run dev-ui
+```
+
+Then open a browser and navigate to [http://localhost:8010](http://localhost:8010).
