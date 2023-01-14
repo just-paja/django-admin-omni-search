@@ -22,11 +22,16 @@ class OmniSearchAdminSite:
             'objectName': str(cls._meta.verbose_name),
         }
 
+    def get_admin_model(self, model):
+        return self._registry[model]
+
     def get_omnisearch_context(self, ctx):
         items = []
         for app in ctx['available_apps']:
             for model in app['models']:
-                items.append(self.get_omnisearch_model(app, model))
+                model_admin = self.get_admin_model(model['model'])
+                if model_admin.search_fields:
+                    items.append(self.get_omnisearch_model(app, model))
         if len(items) == 0:
             return None
         return {
