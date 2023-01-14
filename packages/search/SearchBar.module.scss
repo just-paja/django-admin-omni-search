@@ -8,6 +8,7 @@
   display: flex;
   transition: border-color 0.2s;
   padding: 1px;
+  position: relative;
   overflow: hidden;
 
   &:before,

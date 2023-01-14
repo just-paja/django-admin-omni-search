@@ -5,6 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { AdminProvider } from '../context.mjs'
 import { SearchCombo } from '../SearchCombo.mjs'
 
+import './stories.scss'
+
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'SearchCombo',
@@ -35,7 +37,7 @@ const Template = args => {
   }, [argResult])
 
   return (
-    <AdminProvider baseUrl="/admin">
+    <AdminProvider models={[]} searchPath="/admin">
       <div onClick={() => setOpen(true)}>
         <SearchCombo
           open={open}
@@ -54,14 +56,16 @@ const defaultResults = JSON.stringify(
     {
       appName: 'auth',
       modelName: 'user',
+      key: 'auth.user.1',
       pk: 1,
-      str: 'Hans Olo',
+      text: 'Hans Olo',
     },
     {
       appName: 'auth',
       modelName: 'user',
+      key: 'auth.user.2',
       pk: 2,
-      str: 'Dar Thvader',
+      text: 'Dar Thvader',
     },
   ],
   null,

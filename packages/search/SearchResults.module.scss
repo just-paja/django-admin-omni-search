@@ -9,6 +9,7 @@
   overflow: hidden;
   overflow-y: auto;
   pointer-events: none;
+  position: relative;
   transition: opacity 0.2s;
 
   &:before {
@@ -36,6 +37,7 @@
 
   a.result {
     align-items: flex-start;
+    color: var(--header-link-color);
     display: flex;
     margin-top: 1px;
     padding: $spacing-x $spacing-x;
