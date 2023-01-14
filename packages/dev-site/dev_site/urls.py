@@ -24,5 +24,5 @@ class AccessUser:
 site.has_permission = lambda r: setattr(r, 'user', AccessUser()) or True
 
 urlpatterns = [
-    path('admin/', site.urls),
+    path('', site.urls),
 ]
