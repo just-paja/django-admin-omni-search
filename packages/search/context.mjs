@@ -10,6 +10,7 @@ export const AdminProvider = ({
   homePath,
   models,
   placeholder,
+  publicPath,
   searchPath,
   children,
 }) => {
@@ -70,6 +71,7 @@ export const AdminProvider = ({
     fetchResults,
     models,
     placeholder,
+    publicPath,
   }
 
   return <AdminContext.Provider value={ctx}>{children}</AdminContext.Provider>

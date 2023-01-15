@@ -1,7 +1,8 @@
 import classnames from 'classnames'
 import React, { useEffect, useState } from 'react'
 
-import { HomeButton } from './HomeButton.mjs'
+import { FaGlobe, FaHome } from 'react-icons/fa/index.esm.js'
+import { IconButton } from './IconButton.mjs'
 import { SearchBar } from './SearchBar.mjs'
 import { SearchResults } from './SearchResults.mjs'
 
@@ -14,6 +15,7 @@ export function SearchCombo({
   onSearch,
   onClose,
   onOpen,
+  publicPath,
   results,
 }) {
   const [selectedIndex, selectIndex] = useState(null)
@@ -84,7 +86,8 @@ export function SearchCombo({
       <div className={styles.blur} onClick={onClose} />
       <div className={styles.line}>
         <div className={styles.buttons}>
-          <HomeButton href={homePath} />
+          <IconButton href={homePath} icon={FaHome} />
+          <IconButton href={publicPath} icon={FaGlobe} />
         </div>
         <div className={styles.search}>
           <SearchBar

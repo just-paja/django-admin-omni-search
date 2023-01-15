@@ -1,5 +1,15 @@
 @import './variables.scss';
 
+.bar {
+  position: relative;
+  z-index: 10001;
+
+  :global(.omnisearch-field-icon) {
+    transition: all 0.2s;
+    margin-left: 0;
+  }
+}
+
 .combo {
   position: relative;
   z-index: 100000;
@@ -15,6 +25,10 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.33s;
+  }
+  
+  :global(.omnisearch-bar):focus-within :global(.omnisearch-field-icon){
+    margin-left: calc($spacing-x * 2);
   }
 
   &.open {
@@ -35,12 +49,8 @@
 }
 
 .search {
+  margin-left: 0.5em;
   position: relative;
-}
-
-.bar {
-  position: relative;
-  z-index: 10001;
 }
 
 .popup {

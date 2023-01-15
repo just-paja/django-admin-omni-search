@@ -15,7 +15,7 @@ function Icon({ icon: Component, hidden, ...props }) {
 
 function SearchIcon(props) {
   return (
-    <div className={styles.fieldIcon}>
+    <div className={classnames(styles.fieldIcon, 'omnisearch-field-icon')}>
       <Icon {...props} icon={FaSearch} />
     </div>
   )

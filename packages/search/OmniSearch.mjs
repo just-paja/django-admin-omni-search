@@ -6,7 +6,7 @@ import { SearchCombo } from './SearchCombo.mjs'
 const FLICKER_TIMEOUT = 30
 
 function OmniSearch() {
-  const { homePath, fetchResults } = useAdmin()
+  const { homePath, fetchResults, publicPath } = useAdmin()
   const cached = useRef([])
   const updateThrottle = useRef(null)
   const [results, setResults] = useState([])
@@ -42,6 +42,7 @@ function OmniSearch() {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       onSearch={handleSearch}
+      publicPath={publicPath}
       results={results}
     />
   )
@@ -52,6 +53,7 @@ export function OmniSearchApp({ config }) {
     <AdminProvider
       homePath={config.homeUrl}
       placeholder={config.placeholder}
+      publicPath={config.publicUrl}
       searchPath={config.searchUrl}
       models={config.models}
     >

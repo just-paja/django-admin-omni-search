@@ -35,10 +35,11 @@ class OmniSearchAdminSite:
         if len(items) == 0:
             return None
         return {
-            'homeUrl': str(ctx['site_url']),
+            'homeUrl': reverse(f"{self.name}:index"),
             'models': items,
             'placeholder': str(ctx['site_header']),
-            'searchUrl': reverse("admin:omnisearch"),
+            'publicUrl': self.site_url,
+            'searchUrl': reverse(f"{self.name}:omnisearch"),
         }
 
     def omnisearch_view(self, request):
