@@ -43,6 +43,7 @@ export const AdminProvider = ({
       .then(data =>
         data.results.map(result => ({
           appLabel: model.app.label,
+          detailHref: result.detailHref,
           key: `${model.app.label}-${model.ident}-${result.id}`,
           modelName: model.ident,
           modelVerbose: model.objectName,

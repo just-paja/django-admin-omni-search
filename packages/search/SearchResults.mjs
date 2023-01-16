@@ -7,7 +7,7 @@ import styles from './SearchResults.module.scss'
 
 function SearchResult({ result, selected }) {
   const ref = useRef(null)
-  const { appLabel, modelName, modelVerbose, pk, text } = result
+  const { appLabel, detailHref, modelName, modelVerbose, pk, text } = result
   const { linkTo } = useAdmin()
   const href = linkTo(appLabel, modelName, pk)
 
@@ -20,7 +20,7 @@ function SearchResult({ result, selected }) {
   return (
     <a
       className={classnames(styles.result, { [styles.selected]: selected })}
-      href={href}
+      href={detailHref || href}
       ref={ref}
     >
       <div className={styles.modelName}>

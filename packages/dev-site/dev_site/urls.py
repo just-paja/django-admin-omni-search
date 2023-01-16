@@ -18,8 +18,15 @@ from django.urls import path
 
 from .admin import site
 
+
+def return_true(*args, **kwargs):
+    return True
+
+
 class AccessUser:
-    has_module_perms = has_perm = __getattr__ = lambda s,*a,**kw: True
+    pk = 1
+    has_module_perms = has_perm = lambda s,*a,**kw: True
+    has_perms = return_true
 
 site.has_permission = lambda r: setattr(r, 'user', AccessUser()) or True
 

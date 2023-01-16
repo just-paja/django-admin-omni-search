@@ -1,6 +1,7 @@
 from django.apps import apps
 from django.core.exceptions import PermissionDenied
 from django.http import Http404, JsonResponse
+from django.urls import reverse
 from django.views.generic.list import BaseListView
 
 
@@ -38,12 +39,26 @@ class OmniSearchModelView(BaseListView):
             }
         )
 
+    def get_detail_href(self, obj):
+        model_admin = self.admin_site.get_admin_model(type(obj))
+        if hasattr(model_admin, 'get_detail_route_target'):
+            return reverse(
+                f'{model_admin.get_detail_route_target()}',
+                args=[obj.pk],
+            )
+
+        return None
+
     def serialize_result(self, obj, to_field_name):
         """
         Convert the provided model object to a dictionary that is added to the
         results list.
         """
-        return {"id": str(getattr(obj, to_field_name)), "text": str(obj)}
+        return {
+            "id": str(getattr(obj, to_field_name)),
+            "text": str(obj),
+            "detailHref": self.get_detail_href(obj),
+        }
 
     def get_paginator(self, *args, **kwargs):
         """Use the ModelAdmin's paginator."""
