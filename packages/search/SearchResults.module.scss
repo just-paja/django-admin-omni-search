@@ -3,7 +3,6 @@
 .results {
   border-radius: 0 0 $border-radius $border-radius;
   border: none;
-  padding: 0 1px 1px;
   max-height: 320px;
   opacity: 0;
   overflow: hidden;
@@ -12,15 +11,20 @@
   position: relative;
   transition: opacity 0.2s;
 
-  &:before {
-    background-color: var(--header-branding-color);
-    bottom: 0;
-    content: ' ';
-    left: 0;
-    opacity: 0.5;
-    position: absolute;
-    right: 0;
-    top: 0;
+  .resultsInner {
+    padding: 0 1px 1px;
+    position: relative;
+
+    &:before {
+      background-color: var(--header-branding-color);
+      bottom: 0;
+      content: ' ';
+      left: 0;
+      opacity: 0.5;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
   }
 
   &.open {

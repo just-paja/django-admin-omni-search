@@ -45,14 +45,18 @@ export function SearchResults({ className, open, selectedIndex, results }) {
         className
       )}
     >
-      {results.length === 0 && <SearchEmpty />}
-      {results.map((result, index) => (
-        <SearchResult
-          key={result.key}
-          result={result}
-          selected={index === selectedIndex}
-        />
-      ))}
+      <div
+        className={classnames(styles.resultsInner, 'omnisearch-results-inner')}
+      >
+        {results.length === 0 && <SearchEmpty />}
+        {results.map((result, index) => (
+          <SearchResult
+            key={result.key}
+            result={result}
+            selected={index === selectedIndex}
+          />
+        ))}
+      </div>
     </div>
   )
 }
