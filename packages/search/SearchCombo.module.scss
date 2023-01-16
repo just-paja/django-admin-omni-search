@@ -27,7 +27,8 @@
     transition: opacity 0.33s;
   }
   
-  :global(.omnisearch-bar):focus-within :global(.omnisearch-field-icon){
+  :global(.omnisearch-bar):focus-within :global(.omnisearch-field-icon),
+  &.open :global(.omnisearch-field-icon) {
     margin-left: calc($spacing-x * 2);
   }
 
