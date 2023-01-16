@@ -1,7 +1,8 @@
 import json
 from functools import update_wrapper
 
-from django.urls import reverse
+from django.urls import path, reverse
+from django.utils.html import format_html
 
 from .views import OmniSearchModelView
 
@@ -61,3 +62,36 @@ class OmniSearchAdminSite:
         return [
             path("omnisearch/", self.omnisearch_view, name="omnisearch"),
         ] + super().get_urls()
+
+
+class OmniSearchDetailMixin():
+    detail_route_ident = 'detail'
+    detail_view_class = None
+
+    def get_detail_route_name(self):
+        app_name = self.model._meta.app_label
+        model_name = self.model._meta.model_name
+        return f"{app_name}_{model_name}_{self.detail_route_ident}"
+
+    def get_detail_route_target(self):
+        return f'{self.admin_site.name}:{self.get_detail_route_name()}'
+
+    def get_urls(self):
+        return [
+            path(
+                f'<pk>/{self.detail_route_ident}',
+                self.admin_site.admin_view(
+                    self.detail_view_class.as_view(
+                        admin_site=self.admin_site,
+                        extra_context={
+                            'opts': self.model._meta,
+                        },
+                    )),
+                name=self.get_detail_route_name(),
+            ),
+            *super().get_urls(),
+        ]
+
+    def detail_link(self, obj):
+        url = reverse(f'{self.get_detail_route_target()}', args=[obj.pk])
+        return format_html(f'<a href="{url}">{obj.pk}</a>')

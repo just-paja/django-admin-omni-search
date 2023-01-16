@@ -68,3 +68,7 @@ extending the base template.
 ### 5. Configure autocomplete
 
 The Omni Search looks for data using the [`autocomplete_fields`](https://docs.djangoproject.com/en/4.1/ref/contrib/admin/#django.contrib.admin.ModelAdmin.autocomplete_fields) attribute of `ModelAdmin`. Configure it for all the models, that you want to search.
+
+## Examples
+
+Go to the [../dev-site](../dev-site) implementation, it serves as example page.

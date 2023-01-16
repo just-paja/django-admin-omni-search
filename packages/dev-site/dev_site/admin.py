@@ -6,7 +6,7 @@ from django.urls import path, reverse
 from django.utils.html import format_html
 from django.views.generic.detail import DetailView
 
-from djangomni_search.admin import OmniSearchAdminSite
+from djangomni_search.admin import OmniSearchAdminSite, OmniSearchDetailMixin
 
 from .models import Unsearchable, WithDetail
 
@@ -31,37 +31,10 @@ class WithDetailDetailView(PermissionRequiredMixin, DetailView):
 
 
 # This model should be searchable and should redirect to the admin detail page
-class WithDetailAdmin(ModelAdmin):
+class WithDetailAdmin(OmniSearchDetailMixin, ModelAdmin):
     search_fields = ('name',)
     list_display = ('detail_link', 'name')
-
-    def get_detail_route_name(self):
-        app_name = self.model._meta.app_label
-        model_name = self.model._meta.model_name
-        return f"{app_name}_{model_name}_detail"
-
-    def get_detail_route_target(self):
-        return f'{self.admin_site.name}:{self.get_detail_route_name()}'
-
-    def get_urls(self):
-        return [
-            path(
-                '<pk>/detail',
-                self.admin_site.admin_view(
-                    WithDetailDetailView.as_view(
-                        admin_site=self.admin_site,
-                        extra_context={
-                            'opts': self.model._meta,
-                        },
-                    )),
-                name=self.get_detail_route_name(),
-            ),
-            *super().get_urls(),
-        ]
-
-    def detail_link(self, obj):
-        url = reverse(f'{self.get_detail_route_target()}', args=[obj.pk])
-        return format_html(f'<a href="{url}">{obj.pk}</a>')
+    detail_view_class = WithDetailDetailView
 
 
 class SiteAdmin(OmniSearchAdminSite, AdminSite):
